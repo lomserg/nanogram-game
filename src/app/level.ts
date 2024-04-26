@@ -14,15 +14,15 @@ export default class Level {
     this.row = [];
     this.col = [];
     this.valueString = valueString;
-    this.topNums = this.getHints(this.col);
-    this.leftNums = this.getHints(this.row);
-    this.won = false;
     if (this.valueString) {
       this.row = this.rowVals();
     }
     if (this.valueString) {
       this.col = this.colVals();
     }
+    this.topNums = this.getHints(this.col);
+    this.leftNums = this.getHints(this.row);
+    this.won = false;
   }
 
   rowVals() {
