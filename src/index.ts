@@ -2,6 +2,7 @@ import Level from "./app/level";
 import { Game } from "./app/game";
 import Square from "./app/square";
 import Board from "./app/board";
+import "./main.css";
 const level1 = new Level("level_one", 3, "111100101");
 // level1.rowVals();
 // console.log(level1.rowVals());
