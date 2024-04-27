@@ -161,3 +161,6 @@ body .footer .link-box a:visited {
   padding: 0.5rem 0.2rem;
   border: 1px solid transparent;
 }
+.board .grid .row-div .filled {
+  background-color: teal;
+}

@@ -12,10 +12,9 @@ const level1 = new Level("level_one", 3, "111100101");
 const g = new Game();
 console.log(g.boards);
 const s = new Square(g);
-
+g.play();
 const b = new Board(g, level1.size, level1.topNums, level1.leftNums);
-b.render();
-console.log(b.render());
+console.log(b.findCurrentVals());
 const board = g.createNewBoard();
 // const boardElement = board.render();
 // Get the root element

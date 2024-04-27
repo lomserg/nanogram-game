@@ -5,7 +5,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nanogram</title>
   </head>
-  <body id="root">
-    <div id="board">Board goes here!</div>
+  <body>
+    <div id="root">
+      <div class="header">
+        <h1>Nonogram</h1>
+        <div class="nav-bar">
+          <div class="left-nav">
+            <div class="completed-puzzles-box">
+              <div class="unpressed" id="completed-puzzles-button">Уровни</div>
+              <div id="completed-puzzles-detail" class="hidden">
+                <div class="unsolved" id="tutorial"></div>
+                <div class="unsolved" id="level_one"></div>
+                <div class="unsolved" id="level_two"></div>
+                <div class="unsolved" id="level_three"></div>
+                <div class="unsolved" id="level_four"></div>
+                <div class="unsolved" id="level_five"></div>
+                <div class="unsolved" id="level_six"></div>
+                <div class="unsolved" id="level_seven"></div>
+                <div class="unsolved" id="level_eight"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="instructions-box">
+            <div class="unpressed" id="instructions-button">Инструкция</div>
+            <div class="hidden" id="instructions-detail">
+              <ul>
+                <li>Ваша цель - заполнить сетку, чтобы получилась картинка.</li>
+                <li>Нажмите левой кнопкой мыши, чтобы заполнить квадрат.</li>
+                <li>
+                  Нажмите правой кнопкой мыши, чтобы отметить квадрат как
+                  пустой.
+                </li>
+                <li>
+                  Не уверены? Используйте среднюю кнопку мыши, чтобы отметить
+                  квадрат как возможный!
+                </li>
+                <li>
+                  Вы также можете использовать кнопки под сеткой, чтобы изменить
+                  режим мыши. Кнопка X превращает левый клик в режим X, а кнопка
+                  ? превращает левый клик в режим Возможно. Курсор возвращает
+                  режим мыши в обычный режим.
+                </li>
+                <li>
+                  Числа по бокам и сверху показывают, сколько квадратов в этом
+                  ряду или столбце заполнены.
+                </li>
+                <li>
+                  Числа, разделенные пробелом, означают, что между наборами
+                  заполненных блоков есть хотя бы один пустой квадрат.
+                </li>
+              </ul>
+              <p>
+                <span>*подсказка*</span> Если число такое же, как размер сетки,
+                то вся строка или столбец может быть заполненным!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="main-content">
+        <div class="board-container">
+          <div class="hidden" id="board-modal"></div>
+          <div id="board">Board goes here!</div>
+          <div class="button-box">
+            <div id="cursor-button" class="pressed">
+              <i class="fas fa-mouse-pointer"></i>
+            </div>
+            <div id="x-button" class="unpressed">
+              <i class="fas fa-times"></i>
+            </div>
+            <div id="maybe-button" class="unpressed">
+              <i class="fas fa-question"></i>
+            </div>
+          </div>
+        </div>
+        <div class="message-box">
+          <div class="outer-timer-box">
+            <div class="timer-box">
+              <div id="total-timer"></div>
+            </div>
+            <div id="pause" class="pause-box">
+              <div class="pause">
+                <i id="pause-icon" class="fas fa-pause"></i>
+              </div>
+            </div>
+          </div>
+          <div id="level-msg"></div>
+          <div id="time-msg" class="hidden">
+            Your time is <span id="level-timer"></span>!
+          </div>
+          <a href="" class="hidden" id="restart">Начать заново</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer"></div>
   </body>
 </html>

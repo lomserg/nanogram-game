@@ -38,7 +38,16 @@ export default class Board {
       }
     }
   }
-
+  findCurrentVals() {
+    let vals = [];
+    for (let i = 0; i < this.grid.length; i++) {
+      for (let j = 0; j < this.grid[i].length; j++) {
+        let sq = this.grid[i][j];
+        vals.push(sq.value);
+      }
+    }
+    return vals.join("");
+  }
   render() {
     if (this.board) {
       this.board.innerHTML = "";
