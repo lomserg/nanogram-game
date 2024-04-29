@@ -1,5 +1,6 @@
 import Level from "./level";
 import Board from "./board";
+import ElementCreator from "./createelement";
 import {
   tutorial,
   level_one,
@@ -19,7 +20,7 @@ export class Game {
   currentLevel: Level;
   currentBoard: Board | null;
   boardDiv: HTMLDivElement;
-
+  asideDiv: HTMLDivElement;
   mouseMode: string;
   constructor() {
     this.currentIdx = 0;
@@ -35,10 +36,11 @@ export class Game {
       level_eight,
     ];
     this.boards = [];
-    this.currentLevel = this.levels[this.currentIdx]; // Initialize currentLevel with null
     // this.setCurrentLevel();
+    this.currentLevel = this.levels[this.currentIdx]; // Initialize currentLevel with null
     this.currentBoard = this.createNewBoard();
     this.boardDiv = document.getElementById("board") as HTMLDivElement;
+    this.asideDiv = document.querySelector(".left-nav") as HTMLDivElement;
     this.boardDiv.addEventListener("click", () => this.update());
     this.mouseMode = "cursor";
   }
@@ -49,6 +51,18 @@ export class Game {
     } else {
       return false;
     }
+  }
+  getRundom() {
+    this.currentLevel =
+      this.levels[Math.floor(Math.random() * this.levels.length)];
+    this.currentBoard = this.createNewBoard();
+    this.currentBoard.render();
+  }
+
+  setLevel(index: number) {
+    this.currentLevel = this.levels[index];
+    this.currentBoard = this.createNewBoard();
+    this.currentBoard.render();
   }
   // setCurrentLevel(): void {
   //   if (this.currentIdx >= 0 && this.currentIdx < this.levels.length) {
@@ -97,5 +111,24 @@ export class Game {
     } else {
       throw new Error("No current board available");
     }
+  }
+
+  generateLevelsElement(levels: Level[]) {
+    const levelsMain = new ElementCreator("div", "levels-menu");
+    const levelsMainElem = levelsMain.getElement() as HTMLDivElement;
+    console.log(levelsMainElem);
+    levels.forEach((level, index) => {
+      const levelClass = new ElementCreator("div", "level-content", level.name);
+      levelClass.createElement(); // Ensure createElement is called
+      const levelElem = levelClass.getElement() as HTMLDivElement;
+      levelElem.setAttribute("id", index.toString());
+      console.log(levelElem);
+      levelElem.addEventListener("click", () => {
+        levelElem.classList.add("current");
+        this.setLevel(index);
+      });
+      levelsMainElem.append(levelElem);
+    });
+    this.asideDiv.append(levelsMainElem);
   }
 }

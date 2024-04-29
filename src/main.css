@@ -1,3 +1,9 @@
+/* * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+} */
+
 body {
   background-image: url(./images/mountain.jpg);
   background-size: cover;
@@ -105,15 +111,28 @@ body .footer .link-box a:visited {
   height: 4rem;
   border: 1px solid black;
 }
+.board-container {
+  background-color: blue;
+  /* box-shadow: 2px 2px 2px $header; */
+  border-radius: 20%;
+  width: fit-content;
+  padding: 0 6em;
+  margin: 0 auto;
+  min-height: 20em;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
 
-.board {
+.board-container .board {
   width: fit-content;
   margin: 0 auto;
   position: relative;
   text-align: center;
 }
 
-.topNums {
+.board-container .board .topNums {
   color: aquamarine;
   position: relative;
   display: flex;
@@ -121,7 +140,16 @@ body .footer .link-box a:visited {
   border: 2px solid transparent;
 }
 
-.leftNums {
+.board-container .board .topNums > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 1rem;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid transparent;
+}
+
+.board-container .board .leftNums {
   color: aquamarine;
   position: absolute;
   left: 0;
@@ -130,30 +158,8 @@ body .footer .link-box a:visited {
   flex-direction: column;
   border: 2px solid transparent;
 }
-.grid {
-  border: 2px solid black;
-  margin-bottom: 2em;
-}
-.row-div {
-  display: flex;
-}
-.grid .row-div .unclicked {
-  background-color: aquamarine;
-}
-.board .grid .row-div .square {
-  width: 2rem;
-  height: 2rem;
-  border: 1px outset black;
-}
-.board .topNums > div {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  width: 1rem;
-  padding: 0.2rem 0.5rem;
-  border: 1px solid transparent;
-}
-.board .leftNums > div {
+
+.board-container .board .leftNums > div {
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -161,6 +167,103 @@ body .footer .link-box a:visited {
   padding: 0.5rem 0.2rem;
   border: 1px solid transparent;
 }
-.board .grid .row-div .filled {
+
+.board-container .board .grid {
+  border: 2px solid black;
+  margin-bottom: 2em;
+}
+
+.board-container .board .grid .row-div:nth-child(5n + 0) {
+  border-bottom: 2px solid black;
+}
+
+.board-container .board .grid .row-div:last-child {
+  border-bottom: none;
+}
+
+.board-container .board .grid .row-div {
+  display: flex;
+}
+
+.board-container .board .grid .row-div .square {
+  width: 2rem;
+  height: 2rem;
+  border: 1px outset black;
+}
+
+.board-container .board .grid .row-div .square:hover {
+  filter: brightness(120%);
+}
+
+.board-container .board .grid .row-div .square:nth-child(5n + 0) {
+  border-right: 3px solid black;
+}
+
+.board-container .board .grid .row-div .square:last-child {
+  border-right: 1px outset black;
+}
+
+.board-container .board .grid .row-div .unclicked {
+  background-color: aquamarine;
+}
+
+.board-container .board .grid .row-div .filled {
   background-color: teal;
+}
+
+.board-container .board .grid.cursor {
+  cursor: default;
+}
+
+.board-container .board .grid.x-mode {
+  cursor: no-drop;
+}
+
+.board-container .board .grid.maybe-mode {
+  cursor: help;
+}
+
+#board-modal {
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  position: absolute;
+  background-color: red;
+  opacity: 0.5;
+  left: 0;
+  top: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+.button-box {
+  display: flex;
+}
+
+.button-box #cursor-button:hover {
+  filter: brightness((120%));
+}
+
+.button-box #x-button:hover {
+  filter: brightness((120%));
+}
+
+.button-box #maybe-button {
+  width: 2em;
+  height: 2em;
+  background-color: pink;
+  margin: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-box #maybe-button:hover {
+  filter: brightness((120%));
 }

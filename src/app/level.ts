@@ -60,6 +60,7 @@ export default class Level {
     for (let i = 0; i < vals.length; i++) {
       let temp = [];
       let count = 0;
+
       for (let j = 0; j < vals[i].length; j++) {
         if (vals[i][j] === "0") {
           if (count !== 0) {
@@ -68,7 +69,7 @@ export default class Level {
           count = 0;
         }
         if (vals[i][j] === "1") {
-          count++;
+          count += 1;
         }
       }
       if (count !== 0) {
@@ -76,8 +77,11 @@ export default class Level {
       }
       if (temp.length > 0) {
         nums.push(temp);
+      } else if (temp.length === 0) {
+        nums.push([0]);
       }
     }
+
     return nums;
   }
 }

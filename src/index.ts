@@ -10,15 +10,16 @@ const level1 = new Level("level_one", 3, "111100101");
 // console.log(level1.topNums);
 // console.log(level1.leftNums);
 const g = new Game();
-console.log(g.boards);
-const s = new Square(g);
+
 g.play();
-const b = new Board(g, level1.size, level1.topNums, level1.leftNums);
-console.log(b.findCurrentVals());
-const board = g.createNewBoard();
+g.setLevel(0);
+g.generateLevelsElement(g.levels);
+
+// console.log(g.levels);
+// g.levels.forEach((level) => {
+//   console.log(level.name);
+// });
 // const boardElement = board.render();
 // Get the root element
 // Get the root element
-const rootElement = document.getElementById("root");
 // Check if root element exists before appending boardElement
-console.log(rootElement);
