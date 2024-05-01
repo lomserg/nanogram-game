@@ -35,14 +35,26 @@ export default class Square {
         break;
       }
     }
-    console.log(this.game.mouseMode);
-    console.log(this.game);
+    // console.log(this.game.mouseMode);
+    // console.log(this.game);
     this.render();
     return;
   }
-  render() {
-    this.square.className = "square ";
-    this.square.className += this.status;
-    return this.square;
+  render(solution: boolean = false) {
+    // console.log(solution);
+    if (solution) {
+      console.log(solution);
+      this.square.className = "square filled";
+      this.status = "filled";
+      console.log(this.square);
+      return this.square;
+      this.square.removeEventListener("click", this.handleClick); // Remove the event listener first
+      return this.square;
+    }
+    if (!solution) {
+      this.square.className = "square ";
+      this.square.className += this.status;
+      return this.square;
+    }
   }
 }

@@ -10,11 +10,14 @@ const level1 = new Level("level_one", 3, "111100101");
 // console.log(level1.topNums);
 // console.log(level1.leftNums);
 const g = new Game();
-
 g.play();
-g.setLevel(0);
+// g.play();
+// g.setLevel(0);
+// g.generateLevelsElement(g.levels);
+console.log(g.currentBoard?.grid);
+console.log(g.currentLevel.row);
 g.generateLevelsElement(g.levels);
-
+g.gameMenu();
 // console.log(g.levels);
 // g.levels.forEach((level) => {
 //   console.log(level.name);

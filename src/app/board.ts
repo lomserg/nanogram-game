@@ -38,6 +38,52 @@ export default class Board {
       }
     }
   }
+  solveGrid(rowArr: string[][]) {
+    if (this.board) {
+      this.board.innerHTML = "";
+      this.board.className = "board";
+      let topNums = document.createElement("div");
+      let leftNums = document.createElement("div");
+      topNums.className = "topNums";
+      leftNums.className = "leftNums";
+
+      this.topNums.forEach((numArr) => {
+        let nums = document.createElement("div");
+        nums.innerHTML = numArr.join(" ");
+        topNums.append(nums);
+      });
+      this.leftNums.forEach((numArr) => {
+        let nums = document.createElement("div");
+        nums.innerHTML = numArr.join(" ");
+        leftNums.append(nums);
+      });
+      this.board.appendChild(topNums);
+      this.board.appendChild(leftNums);
+      let griddiv = document.createElement("div");
+      griddiv.className = "grid";
+      griddiv.id = "grid";
+
+      for (let i = 0; i < rowArr.length; i++) {
+        let rowDiv = document.createElement("div");
+        rowDiv.className = "row-div";
+        for (let j = 0; j < rowArr[i].length; j++) {
+          if (rowArr[i][j] === "1") {
+            let square = this.grid[i][j];
+            rowDiv.appendChild(square.render(true));
+            console.log(rowDiv);
+          }
+          let square = this.grid[i][j];
+          rowDiv.appendChild(square.render());
+        }
+        griddiv.appendChild(rowDiv);
+      }
+      this.board.appendChild(griddiv);
+      console.log(this.board);
+      return this.board;
+    } else {
+      console.log("No board");
+    }
+  }
   findCurrentVals() {
     let vals = [];
     for (let i = 0; i < this.grid.length; i++) {

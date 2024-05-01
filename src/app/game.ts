@@ -53,8 +53,14 @@ export class Game {
     }
   }
   getRundom() {
-    this.currentLevel =
-      this.levels[Math.floor(Math.random() * this.levels.length)];
+    let newIndex;
+    do {
+      newIndex = Math.floor(Math.random() * this.levels.length);
+    } while (newIndex === this.currentIdx);
+
+    console.log(this.currentIdx, newIndex);
+    this.currentIdx = newIndex;
+    this.currentLevel = this.levels[this.currentIdx];
     this.currentBoard = this.createNewBoard();
     this.currentBoard.render();
   }
@@ -63,6 +69,7 @@ export class Game {
     this.currentLevel = this.levels[index];
     this.currentBoard = this.createNewBoard();
     this.currentBoard.render();
+    console.log(this.currentLevel);
   }
   // setCurrentLevel(): void {
   //   if (this.currentIdx >= 0 && this.currentIdx < this.levels.length) {
@@ -124,11 +131,61 @@ export class Game {
       levelElem.setAttribute("id", index.toString());
       console.log(levelElem);
       levelElem.addEventListener("click", () => {
+        levelsMainElem.querySelectorAll(".level-content").forEach((el) => {
+          el.classList.remove("current");
+        });
+
+        // Add "current" class to the clicked element
         levelElem.classList.add("current");
+
         this.setLevel(index);
       });
       levelsMainElem.append(levelElem);
     });
     this.asideDiv.append(levelsMainElem);
+  }
+
+  gameMenu() {
+    const levelsMain = new ElementCreator("div", "button-menu").getElement();
+
+    const resetButton = new ElementCreator(
+      "div",
+      ["btn", "reset-button"],
+      "reset-button"
+    ).getElement() as HTMLDivElement;
+    const solutionButton = new ElementCreator(
+      "div",
+      ["btn", "solution-button"],
+      "solution-button"
+    ).getElement() as HTMLDivElement;
+    const rundomButton = new ElementCreator(
+      "div",
+      ["btn", "rundom-button"],
+      "rundom"
+    ).getElement() as HTMLDivElement;
+    if (rundomButton) {
+      rundomButton.addEventListener("click", () => {
+        this.getRundom();
+        console.log(this.currentLevel);
+        console.log(this.currentIdx);
+      });
+    }
+    if (solutionButton) {
+      solutionButton.addEventListener("click", () => {
+        if (this.currentBoard)
+          this.currentBoard.solveGrid(this.currentLevel.row);
+        console.log(this.currentLevel);
+      });
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", () => {
+        this.currentBoard = this.createNewBoard();
+        this.currentBoard.render();
+        console.log("hi");
+      });
+    }
+    levelsMain?.append(resetButton, solutionButton, rundomButton);
+    if (levelsMain) this.asideDiv.append(levelsMain);
   }
 }
