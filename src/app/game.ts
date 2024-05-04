@@ -125,7 +125,11 @@ export class Game {
     const levelsMainElem = levelsMain.getElement() as HTMLDivElement;
     console.log(levelsMainElem);
     levels.forEach((level, index) => {
-      const levelClass = new ElementCreator("div", "level-content", level.name);
+      const levelClass = new ElementCreator(
+        "button",
+        "level-content",
+        level.name
+      );
       levelClass.createElement(); // Ensure createElement is called
       const levelElem = levelClass.getElement() as HTMLDivElement;
       levelElem.setAttribute("id", index.toString());
@@ -149,17 +153,17 @@ export class Game {
     const levelsMain = new ElementCreator("div", "button-menu").getElement();
 
     const resetButton = new ElementCreator(
-      "div",
+      "button",
       ["btn", "reset-button"],
       "reset-button"
     ).getElement() as HTMLDivElement;
     const solutionButton = new ElementCreator(
-      "div",
+      "button",
       ["btn", "solution-button"],
       "solution-button"
     ).getElement() as HTMLDivElement;
     const rundomButton = new ElementCreator(
-      "div",
+      "button",
       ["btn", "rundom-button"],
       "rundom"
     ).getElement() as HTMLDivElement;
